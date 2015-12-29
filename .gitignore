@@ -1,0 +1,11 @@
+bin
+build
+*.log
+logs
+keystore*
+*.pem
+examples
+.classpath
+.gradle
+.project
+.settings

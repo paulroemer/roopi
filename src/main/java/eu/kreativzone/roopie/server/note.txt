@@ -1,0 +1,5 @@
+The code here runs on the rpi attached to a roomba
+ROI is the java API implementing the Roomba Open Interface
+
+GUIServer runs on the rpi and talks over a socket to a GUI running on
+another machine that can be used to control the roomba

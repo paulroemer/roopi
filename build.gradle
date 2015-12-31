@@ -4,8 +4,16 @@ buildscript {
     }
 }
 
+plugins {
+  id "com.github.johnrengelman.shadow" version "1.2.2"
+}
+
 apply plugin: 'java'
+apply from: 'logging.gradle'
+apply from: 'aspectj.gradle'
+apply from: 'jcabi-aspects.gradle'
 //apply from: 'shadow.gradle'
+//apply plugin: 'shadowJar'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
@@ -18,7 +26,7 @@ repositories {
 
 dependencies {
     compile('org.rxtx:rxtx:2.1.7')
-    compile('org.projectlombok:lombok:1.16.6')
+    //compile('name.prokop.bart.rxtx:rxtx:2.2.1')
     compile("com.javaslang:javaslang:2.0.0-RC2")
 }
 

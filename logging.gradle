@@ -1,0 +1,4 @@
+dependencies {
+  compile 'org.codehaus.groovy:groovy-all:2.4.0'
+  compile 'ch.qos.logback:logback-classic:1.0.13'
+}

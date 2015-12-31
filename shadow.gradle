@@ -1,0 +1,9 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+
+shadowJar {
+  baseName = theName
+  classifier = 'fat'
+  manifest {
+    attributes 'Main-Class': theMainClassName
+  }
+}

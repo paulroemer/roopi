@@ -1,0 +1,9 @@
+repositories {
+  mavenCentral()
+  maven { url = 'http://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+  aspectpath 'com.jcabi:jcabi-aspects:1.0-SNAPSHOT'
+  compile 'com.jcabi:jcabi-aspects:1.0-SNAPSHOT'
+}

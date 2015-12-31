@@ -8,10 +8,10 @@ import java.net.Socket;
 import java.net.SocketException;
 
 class DataWriter implements Runnable {
-	ROI roomba;
+	IRoombaOpenInterface roomba;
 	Socket skt;
 
-	DataWriter(ROI mc, Socket skt) {
+	DataWriter(IRoombaOpenInterface mc, Socket skt) {
 		roomba = mc;
 		this.skt = skt;
 	}
@@ -31,12 +31,12 @@ class DataWriter implements Runnable {
 				}
 				
 				out.writeInt(x[0]); // send any err code first
-				out.writeInt(x[roomba.LIGHT_BUMP_L]); // 46
-				out.writeInt(x[roomba.LIGHT_BUMP_FL]); // 47
-				out.writeInt(x[roomba.LIGHT_BUMP_CL]); // 48
-				out.writeInt(x[roomba.LIGHT_BUMP_CR]); // 49
-				out.writeInt(x[roomba.LIGHT_BUMP_FR]); // 50
-				out.writeInt(x[roomba.LIGHT_BUMP_R]); // 51
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_L]); // 46
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_FL]); // 47
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_CL]); // 48
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_CR]); // 49
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_FR]); // 50
+				out.writeInt(x[IRoombaOpenInterface.LIGHT_BUMP_R]); // 51
 			}
 		} catch (SocketException ex) {
 			// std exit condition

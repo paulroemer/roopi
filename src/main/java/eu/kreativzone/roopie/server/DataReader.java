@@ -8,10 +8,10 @@ import java.net.Socket;
 import java.net.SocketException;
 
 class DataReader implements Runnable {
-	ROI roomba;
+	IRoombaOpenInterface roomba;
 	Socket skt;
 
-	public DataReader(ROI mc, Socket skt) {
+	public DataReader(IRoombaOpenInterface mc, Socket skt) {
 		roomba = mc;
 		this.skt = skt;
 	}

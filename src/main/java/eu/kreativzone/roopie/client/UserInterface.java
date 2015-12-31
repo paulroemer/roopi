@@ -27,9 +27,10 @@ class UserInterface {
 			System.out.println(
 					"Unknown host: " + ex.getMessage() + " - is" + " the pi on the Roomba connected to the network?");
 		} catch (java.net.ConnectException ex) {
+			System.out.println(ex.getMessage());
 			System.out.println("Found the raspberry pi, but is " + "RooPie.GUIServer running on the pi on the Roomba?");
 		} catch (IOException ex) {
-			System.err.println(ex.toString());
+			System.err.println(ex.getMessage());
 		}
 		// connection is now set up if there is one. Now set up the GUI
 		JFrame frame = new JFrame("Roomba 500 series ROI");
@@ -162,16 +163,17 @@ class UserInterface {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("Starting UserInterface");
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				// The UserInterface communicates with the program
 				// PiServer running on raspberrypi. It is PiServer
 				// that uses the Roomba ROI interface to communicate
 				// with the hardware.
-				// new UserInterface("raspberrypi",4444);
+				// new UserInterface("raspberrypi", 4444);
 
 				// the rpi is given a static ip address
-				new UserInterface("192.168.1.73", 4444);
+				new UserInterface("10.10.10.6", 4444);
 			}
 		});
 	}

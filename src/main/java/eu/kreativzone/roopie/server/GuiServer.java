@@ -9,6 +9,11 @@ import org.slf4j.LoggerFactory;
 import com.jcabi.aspects.Loggable;
 
 import javaslang.collection.List;
+import net.sourceforge.argparse4j.ArgumentParsers;
+import net.sourceforge.argparse4j.impl.Arguments;
+import net.sourceforge.argparse4j.inf.ArgumentParser;
+import net.sourceforge.argparse4j.inf.ArgumentParserException;
+import net.sourceforge.argparse4j.inf.Namespace;
 
 /**
  * This java application enables the RoombaGUI.UserInterface (running on another
@@ -19,27 +24,30 @@ import javaslang.collection.List;
  */
 public class GuiServer extends ServerSocket {
 
-	private static boolean useDummy = false;
+	private static ArgumentParser parser = ArgumentParsers.newArgumentParser("roombaserver").description("Roomba Server");
+	private static Namespace parsedArgs;
 
 	GuiServer(int port) throws IOException {
 		super(port);
 	}
 
-	private static void configure(String[] args) {
-		System.out.println(args[0]);
-		if (args.length > 0) {
-			if (args[0].equals("--dummy")) {
-				useDummy = true;
-			}
-		}
+	private static void configure(String[] args) throws ArgumentParserException {
+		parser.addArgument("--dummy").action(Arguments.storeTrue());
+		parsedArgs = parser.parseArgs(args);
 	}
 
 	public static void main(String[] args) {
-		configure(args);
+		try {
+			configure(args);
+		} catch (ArgumentParserException e) {
+			parser.handleError(e);
+			return;
+		}
+		
 		GuiServer gs = null;
 		IRoombaOpenInterface roomba = null;
 		try {
-			roomba = useDummy ? new RoombaDummy() : new Roomba("/dev/ttyAMA0");
+			roomba = parsedArgs.getBoolean("dummy") ? new RoombaDummy() : new Roomba("/dev/ttyAMA0");
 			roomba.start();
 			roomba.safe();
 			gs = new GuiServer(4444);

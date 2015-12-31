@@ -13,7 +13,6 @@ apply from: 'logging.gradle'
 apply from: 'aspectj.gradle'
 apply from: 'jcabi-aspects.gradle'
 //apply from: 'shadow.gradle'
-//apply plugin: 'shadowJar'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.8
@@ -23,11 +22,10 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    compile('org.rxtx:rxtx:2.1.7')
-    //compile('name.prokop.bart.rxtx:rxtx:2.2.1')
-    compile("com.javaslang:javaslang:2.0.0-RC2")
+    compile 'org.rxtx:rxtx:2.1.7'
+    compile 'net.sourceforge.argparse4j:argparse4j:0.7.0'
+    compile 'com.javaslang:javaslang:2.0.0-RC2'
 }
 
 eclipse {
@@ -38,5 +36,5 @@ eclipse {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.7'
+    gradleVersion = '2.10'
 }
